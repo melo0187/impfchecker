@@ -33,8 +33,7 @@ http_response=$(curl -s -o response.json -w '%{http_code}' "https://003-iz.impft
 
 
 if [ $http_response != "200" ]; then
-  echo "Error requesting appointment! Status Code:"
-  echo $http_respoonse
+  echo "Error requesting appointment! Status Code: $http_response"
 else
   echo "Received response for appointment request. Checking availability..."
   appointment_options=($(jq -r '.terminpaare | length' response.json))
